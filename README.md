@@ -6,7 +6,7 @@ Mediante una aplicacion Java y con el uso de OpenNLP se ingresa una frase y se d
 
 Integrantes:
 
-Lider y expositor: Jaiver Lesmes <br/ >
+Lider y expositor: Jaiver Lesmes <br />
 Daniel Muñoz <br />
 Diego Muñoz <br />
 
