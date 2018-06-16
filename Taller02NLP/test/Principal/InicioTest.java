@@ -40,28 +40,28 @@ public class InicioTest {
     /**
      * Test of SepararFrases method, of class Inicio.
      */
-    @Test
-    public void testSepararFrases() {
-        System.out.println("SepararFrases");
-        Inicio instance = new Inicio();
-        instance.SepararFrases();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testSepararFrases() {
+//        System.out.println("SepararFrases");
+//        Inicio instance = new Inicio();
+//        instance.SepararFrases();
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      * Test of ActivoPasivo method, of class Inicio.
      */
-    @Test
-    public void testActivoPasivo() {
-        System.out.println("ActivoPasivo");
-        String frase = "";
-        int expResult = 0;
-        int result = Inicio.ActivoPasivo(frase);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testActivoPasivo() {
+//        System.out.println("ActivoPasivo");
+//        String frase = "";
+//        int expResult = 0;
+//        int result = Inicio.ActivoPasivo(frase);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      * Test of SepararPalabras method, of class Inicio.
@@ -69,11 +69,12 @@ public class InicioTest {
     @Test
     public void testSepararPalabras() {
         System.out.println("SepararPalabras");
-        String frase = "sam eat apple";
-        String a [] = Inicio.SepararPalabras(frase);
+        String frase = "Sam eat apple";
+        String entrada [] = Inicio.SepararPalabras(frase);
+        String[] salida = {"Sam","eat","apple"};
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-        assertEquals(a, ["sam","eat","apple"],0.0 );
+        //fail("The test case is a prototype.");
+        assertArrayEquals(salida, entrada );
         
     }
 
