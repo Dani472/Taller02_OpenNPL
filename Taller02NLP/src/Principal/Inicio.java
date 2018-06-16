@@ -98,12 +98,13 @@ public class Inicio {
                 return 0;
     }
     
-    public static void SepararPalabras(String frase) {
+    public static String [] SepararPalabras(String frase) {
         SimpleTokenizer simpleTokenizer = SimpleTokenizer.INSTANCE;
         String tokens[] = simpleTokenizer.tokenize(frase);
         for (String token : tokens) {
             System.out.println(token);
         }
+        return tokens;
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
