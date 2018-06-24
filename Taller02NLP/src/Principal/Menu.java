@@ -8,6 +8,8 @@ package Principal;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
@@ -66,13 +68,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("La lista de palabras contiene un porcentaje de exito ");
         jLabel2.setAutoscrolls(true);
 
-        jLabel3.setText("Posesivos: 37%   (1:52)");
+        jLabel3.setText("Posesivos: 37%   (2,358 segundos)");
 
-        jLabel4.setText("Determinantes: 87%   (1:52)");
+        jLabel4.setText("Determinantes: 87%   (2,876 segundos)");
 
-        jLabel5.setText("Verbos: 16%   (1:49)");
+        jLabel5.setText("Verbos: 16%   (1,208 segundos)");
 
-        jLabel6.setText("Sujetos: 22%   (1:53)");
+        jLabel6.setText("Sujetos: 22%   (2.011 segundos)");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("para ser frases activas y un tiempo de procesamiento de:");
@@ -134,7 +136,11 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Inicio procesar = new Inicio();
+        try {
+            Inicio procesar = new Inicio();
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int aux = 0;
         //Creamos el objeto JFileChooser
         JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView());
@@ -152,11 +158,7 @@ public class Menu extends javax.swing.JFrame {
                 while (valor != -1) {
                     cadena = cadena + (char) valor;
                     valor = fr.read();
-                    
-                    
-                    if ((char) valor == '\n'){
-                       // System.out.println(cadena);
-                        
+                    if ((char) valor == '\n'){                        
                         if(Inicio.ActivoPasivo(cadena) == 1){
                             aux++;
                         }

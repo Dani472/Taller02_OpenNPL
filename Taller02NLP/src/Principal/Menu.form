@@ -120,22 +120,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Posesivos: 37%   (1:52)"/>
+        <Property name="text" type="java.lang.String" value="Posesivos: 37%   (2,358 segundos)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Determinantes: 87%   (1:52)"/>
+        <Property name="text" type="java.lang.String" value="Determinantes: 87%   (2,876 segundos)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Verbos: 16%   (1:49)"/>
+        <Property name="text" type="java.lang.String" value="Verbos: 16%   (1,208 segundos)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sujetos: 22%   (1:53)"/>
+        <Property name="text" type="java.lang.String" value="Sujetos: 22%   (2.011 segundos)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">

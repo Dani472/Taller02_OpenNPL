@@ -18,6 +18,8 @@ import opennlp.tools.tokenize.SimpleTokenizer;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import opennlp.tools.sentdetect.SentenceDetector;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
@@ -54,51 +56,45 @@ public class Inicio {
         }
     }
 
-    public static int ActivoPasivo(String frase) {
-      InputStream tokenModelIn = null;
-		InputStream posModelIn = null;
-		
-		try {
-			String sentence = frase;
-			tokenModelIn = new FileInputStream("en-token.bin");
-			TokenizerModel tokenModel = new TokenizerModel(tokenModelIn);
-			TokenizerME tokenizer = new TokenizerME(tokenModel);
-			String tokens[] = tokenizer.tokenize(sentence);
-			posModelIn = new FileInputStream("en-pos-maxent.bin");
-			POSModel posModel = new POSModel(posModelIn);
-			POSTaggerME posTagger = new POSTaggerME(posModel);
-			String tags[] = posTagger.tag(tokens);
-			double probs[] = posTagger.probs();
-			
-			//System.out.println("Token\t:\tTag\t:\tProbability\n---------------------------------------------");
-			for(int i=0;i<tokens.length;i++){
-				//System.out.println(tokens[i]+"\t:\t"+tags[i]+"\t:\t"+probs[i]);
-                                if (tags[i].equals("POS") || tags[i].equals("PRP") || tags[i].equals("PRP$")){
-                                    return 1; 
-                                }
-			}
-			
-		}catch (IOException e) {
-			// Model loading failed, handle the error
-			e.printStackTrace();
-		}finally {
-			if (tokenModelIn != null) {
-				try {
-					tokenModelIn.close();
-				}catch (IOException e) {
-			             
-                                }
-            }if (posModelIn != null) {
-                try {
-                    posModelIn.close();
-                } catch (IOException e) {
-                }
-            }
+    public static InputStream tokenModelIn;
+    public static InputStream posModelIn = null;
+    public static TokenizerModel tokenModel;
+    public static TokenizerME tokenizer;
+
+    public static POSModel posModel;
+    public static POSTaggerME posTagger;
+
+    Inicio() throws IOException {
+        try {
+            tokenModelIn = new FileInputStream("en-token.bin");
+            tokenModel = new TokenizerModel(tokenModelIn);
+            tokenizer = new TokenizerME(tokenModel);
+
+            posModelIn = new FileInputStream("en-pos-maxent.bin");
+            posModel = new POSModel(posModelIn);
+            posTagger = new POSTaggerME(posModel);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
-                return 0;
     }
     
-    public static String [] SepararPalabras(String frase) {
+    public static String sentence;
+    
+    public static int ActivoPasivo(String frase) {
+        sentence = frase;
+        String tokens[] = tokenizer.tokenize(sentence);
+        String tags[] = posTagger.tag(tokens);
+        double probs[] = posTagger.probs();
+
+        for (int i = 0; i < tokens.length; i++) {
+            if (tags[i].equals("POS") || tags[i].equals("PRP") || tags[i].equals("PRP$")) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public static String[] SepararPalabras(String frase) {
         SimpleTokenizer simpleTokenizer = SimpleTokenizer.INSTANCE;
         String tokens[] = simpleTokenizer.tokenize(frase);
         for (String token : tokens) {
@@ -108,13 +104,6 @@ public class Inicio {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        //Inicio interpretar = new Inicio();
-        //interpretar.SepararFrases();
-        //interpretar.SepararPalabras
-        //Scanner Entrada = new Scanner(System.in);
-        //String frase;
-        //frase = Entrada.nextLine();
-        //interpretar.ActivoPasivo(frase);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
